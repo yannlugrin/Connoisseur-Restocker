@@ -66,10 +66,10 @@ ns.PET_BUFF_FOODS = {}
 -- Professions
 --------------------------------------------------------------------------------
 
--- The profession spells whose localized names identify their skill lines.
-ns.FIRST_AID_SPELL_ID = 3273
-ns.ALCHEMY_SPELL_ID = 2259
-ns.ENGINEERING_SPELL_ID = 4036
+-- The professions whose skill ranks gate which consumables can be used.
+ns.FIRST_AID_SKILL_LINE_ID = 129
+ns.ALCHEMY_SKILL_LINE_ID = 171
+ns.ENGINEERING_SKILL_LINE_ID = 202
 
 -- The Engineering specialization Diagnostics checks the player for.
 ns.GOBLIN_ENGINEER_SPELL_ID = 20222

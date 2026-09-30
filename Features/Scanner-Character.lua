@@ -18,58 +18,35 @@ ns.currentEngineeringSkill = 0
 -- Profession Skills
 --------------------------------------------------------------------------------
 
-function ns.UpdateFirstAidSkill()
-	local firstAidSpellName = C_Spell.GetSpellName(ns.FIRST_AID_SPELL_ID)
-	if not firstAidSpellName then
-		ns.currentFirstAidSkill = 0
-		return
+-- The rank of a skill line, found in the skill list by the name the client
+-- gives its ID. 0 when unlearned. A profession's spell can be named differently
+-- from its skill line (frFR First Aid: "Premiers soins" vs "Secourisme").
+local function GetSkillRank(skillLineID)
+	local skillLineName = C_TradeSkillUI.GetTradeSkillDisplayName(skillLineID)
+	if not skillLineName or skillLineName == "" then
+		return 0
 	end
 
 	for i = 1, ns.GetNumSkillLines() do
 		local skillName, isHeader, _, skillRank = ns.GetSkillLineInfo(i)
-		if not isHeader and skillName == firstAidSpellName then
-			ns.currentFirstAidSkill = skillRank
-			return
+		if not isHeader and skillName == skillLineName then
+			return skillRank
 		end
 	end
 
-	ns.currentFirstAidSkill = 0
+	return 0
+end
+
+function ns.UpdateFirstAidSkill()
+	ns.currentFirstAidSkill = GetSkillRank(ns.FIRST_AID_SKILL_LINE_ID)
 end
 
 function ns.UpdateAlchemySkill()
-	local alchemySpellName = C_Spell.GetSpellName(ns.ALCHEMY_SPELL_ID)
-	if not alchemySpellName then
-		ns.currentAlchemySkill = 0
-		return
-	end
-
-	for i = 1, ns.GetNumSkillLines() do
-		local skillName, isHeader, _, skillRank = ns.GetSkillLineInfo(i)
-		if not isHeader and skillName == alchemySpellName then
-			ns.currentAlchemySkill = skillRank
-			return
-		end
-	end
-
-	ns.currentAlchemySkill = 0
+	ns.currentAlchemySkill = GetSkillRank(ns.ALCHEMY_SKILL_LINE_ID)
 end
 
 function ns.UpdateEngineeringSkill()
-	local engineeringSpellName = C_Spell.GetSpellName(ns.ENGINEERING_SPELL_ID)
-	if not engineeringSpellName then
-		ns.currentEngineeringSkill = 0
-		return
-	end
-
-	for i = 1, ns.GetNumSkillLines() do
-		local skillName, isHeader, _, skillRank = ns.GetSkillLineInfo(i)
-		if not isHeader and skillName == engineeringSpellName then
-			ns.currentEngineeringSkill = skillRank
-			return
-		end
-	end
-
-	ns.currentEngineeringSkill = 0
+	ns.currentEngineeringSkill = GetSkillRank(ns.ENGINEERING_SKILL_LINE_ID)
 end
 
 --------------------------------------------------------------------------------

@@ -26,6 +26,7 @@ read_globals = {
 	"C_SpellBook",
 	"C_Timer",
 	"C_TooltipInfo",
+	"C_TradeSkillUI",
 	"C_UnitAuras",
 	"CANCEL",
 	"ClearCursor",

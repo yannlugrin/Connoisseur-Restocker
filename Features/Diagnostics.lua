@@ -976,6 +976,13 @@ ns.DIAGNOSTIC_API_CHECKS = {
 			return type(C_Spell) == "table" and type(C_Spell.GetSpellName) == "function"
 		end,
 	},
+	-- The profession readers name their skill lines through this.
+	{
+		"C_TradeSkillUI.GetTradeSkillDisplayName",
+		function()
+			return type(C_TradeSkillUI) == "table" and type(C_TradeSkillUI.GetTradeSkillDisplayName) == "function"
+		end,
+	},
 	-- Validate Data reads spells through these.
 	{
 		"C_Spell.GetSpellInfo",
@@ -1817,15 +1824,12 @@ ns.DIAGNOSTIC_DATA_SOURCES = {
 	{
 		label = "Game-IDs",
 		tables = {
-			{ table = "ALCHEMY_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "CALL_PET_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "DISMISS_PET_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "DRUID_BEAR_FORM_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "DRUID_CAT_FORM_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "DRUID_DIRE_BEAR_FORM_SPELL_ID", kind = "spell", idsOf = Self },
-			{ table = "ENGINEERING_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "FEED_PET_SPELL_ID", kind = "spell", idsOf = Self },
-			{ table = "FIRST_AID_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "GOBLIN_ENGINEER_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "MEND_PET_SPELL_ID", kind = "spell", idsOf = Self },
 			{ table = "PET_BUFF_FOODS", kind = "spell", idsOf = Column(1) },
